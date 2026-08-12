@@ -82,6 +82,11 @@ body{
   transition:background .3s;
   transform:none;
 }
+header.scrolled{
+  background:rgba(11,11,11,0.92);
+  border-bottom-color:var(--hairline);
+  padding:16px 0;
+}
   nav.wrap{display:flex; align-items:center; justify-content:space-between; position:relative;}
   .logo{font-family:'Fraunces', serif; font-size:22px; letter-spacing:0.06em;}
   .logo span{color:var(--brass);}
@@ -523,6 +528,16 @@ body.loading{ overflow:hidden; }
   <img src="assets/logo-vivacon-cropped.png" alt="Vivacon Construtora">
 </div>
 <script>
+  const headerEl = document.getElementById('header');
+function checkHeaderScroll(){
+  if(window.scrollY > 60){
+    headerEl.classList.add('scrolled');
+  } else {
+    headerEl.classList.remove('scrolled');
+  }
+}
+window.addEventListener('scroll', checkHeaderScroll, {passive:true});
+checkHeaderScroll();
   let unlocked = false;
   function unlockScroll(){
     if(unlocked) return;
