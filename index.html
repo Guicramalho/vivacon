@@ -844,23 +844,27 @@ if(testiTrack){
   const bounds = new mapboxgl.LngLatBounds();
 
   empreendimentos.forEach(e=>{
-    const el = document.createElement('div');
-    el.style.width = '16px';
-    el.style.height = '16px';
-    el.style.borderRadius = '50%';
-    el.style.background = '#A8875A';
-    el.style.border = '2px solid #fff';
-    el.style.cursor = 'pointer';
+  const el = document.createElement('div');
+  el.style.width = '16px';
+  el.style.height = '16px';
+  el.style.borderRadius = '50%';
+  el.style.background = '#A8875A';
+  el.style.border = '2px solid #fff';
+  el.style.cursor = 'pointer';
 
-    new mapboxgl.Marker(el)
-      .setLngLat([e.lng, e.lat])
-      .setPopup(new mapboxgl.Popup({offset:20}).setHTML(
-        `<div class="map-popup-title">${e.nome}</div><div class="map-popup-status">${e.status}</div>`
-      ))
-      .addTo(map);
+  const popup = new mapboxgl.Popup({offset:20, closeButton:false, closeOnClick:false}).setHTML(
+    `<div class="map-popup-title">${e.nome}</div><div class="map-popup-status">${e.status}</div>`
+  );
 
-    bounds.extend([e.lng, e.lat]);
-  });
+  const marker = new mapboxgl.Marker(el)
+    .setLngLat([e.lng, e.lat])
+    .addTo(map);
+
+  el.addEventListener('mouseenter', ()=> popup.setLngLat([e.lng, e.lat]).addTo(map));
+  el.addEventListener('mouseleave', ()=> popup.remove());
+
+  bounds.extend([e.lng, e.lat]);
+});
 
   map.fitBounds(bounds, {padding:80, maxZoom:14});
 }
