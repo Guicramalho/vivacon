@@ -748,16 +748,16 @@ body.loading{ overflow:hidden; }
       <div>
         <h4>Empreendimentos</h4>
         <ul>
-          <li><a href="#">Lançamentos</a></li>
-          <li><a href="#">Em obras</a></li>
-          <li><a href="#">Entregues</a></li>
+          <li><a href="#empreendimentos" onclick="applyFilter('lancamento')">Lançamentos</a></li>
+<li><a href="#empreendimentos" onclick="applyFilter('obras')">Em obras</a></li>
+<li><a href="#empreendimentos" onclick="applyFilter('entregue')">Entregues</a></li>
         </ul>
       </div>
       <div>
         <h4>Institucional</h4>
         <ul>
-          <li><a href="#">Sobre a VIVACON</a></li>
-          <li><a href="#">Trabalhe conosco</a></li>
+          <li><a href="#sobre">Sobre a VIVACON</a></li>
+          <li><a href="https://wa.me/5583999889835">Trabalhe conosco</a></li>
           <li><a href="#">Imprensa</a></li>
         </ul>
       </div>
@@ -978,15 +978,14 @@ items.forEach(i=>obs.observe(i));
 
   const pills = document.querySelectorAll('.filter-pill');
 const cards = document.querySelectorAll('.project-card');
-pills.forEach(p=>p.addEventListener('click', ()=>{
-  pills.forEach(x=>x.classList.remove('active'));
-  p.classList.add('active');
-  const filter = p.dataset.filter;
+function applyFilter(filter){
+  pills.forEach(x=>x.classList.toggle('active', x.dataset.filter === filter));
   cards.forEach(card=>{
     const match = filter === 'todos' || card.dataset.status.split(' ').includes(filter);
     card.style.display = match ? '' : 'none';
   });
-}));
+}
+pills.forEach(p=>p.addEventListener('click', ()=> applyFilter(p.dataset.filter)));
 const headerEl = document.getElementById('header');
 function checkHeaderScroll(){
   if(window.scrollY > 60){
