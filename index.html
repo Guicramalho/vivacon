@@ -81,8 +81,10 @@ body{
   transform:none;
 }
 header.scrolled{
-  background:rgba(11,11,11,0.92);
-  border-bottom-color:var(--hairline);
+  background:rgba(11,11,11,0.55);
+  backdrop-filter:blur(14px) saturate(160%);
+  -webkit-backdrop-filter:blur(14px) saturate(160%);
+  border-bottom:1px solid rgba(255,255,255,0.08);
   padding:16px 0;
 }
   nav.wrap{display:flex; align-items:center; justify-content:space-between; position:relative;}
