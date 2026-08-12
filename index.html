@@ -528,16 +528,6 @@ body.loading{ overflow:hidden; }
   <img src="assets/logo-vivacon-cropped.png" alt="Vivacon Construtora">
 </div>
 <script>
-  const headerEl = document.getElementById('header');
-function checkHeaderScroll(){
-  if(window.scrollY > 60){
-    headerEl.classList.add('scrolled');
-  } else {
-    headerEl.classList.remove('scrolled');
-  }
-}
-window.addEventListener('scroll', checkHeaderScroll, {passive:true});
-checkHeaderScroll();
   let unlocked = false;
   function unlockScroll(){
     if(unlocked) return;
@@ -981,6 +971,16 @@ pills.forEach(p=>p.addEventListener('click', ()=>{
     card.style.display = match ? '' : 'none';
   });
 }));
+const headerEl = document.getElementById('header');
+function checkHeaderScroll(){
+  if(window.scrollY > 60){
+    headerEl.classList.add('scrolled');
+  } else {
+    headerEl.classList.remove('scrolled');
+  }
+}
+window.addEventListener('scroll', checkHeaderScroll, {passive:true});
+checkHeaderScroll();
 </script>
 
 </body>
