@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vivaconconstrucoes.com.br/sitemap.xml
